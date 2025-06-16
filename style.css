@@ -3,11 +3,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Alinea al inicio para dejar espacio en pantallas pequeñas */
     min-height: 100vh;
     margin: 0;
     background-color: #f0f0f0;
-    overflow: hidden;
+    overflow-x: hidden; /* Evita scroll horizontal */
+    padding-top: 20px; /* Pequeño espacio superior */
+    box-sizing: border-box; /* Incluye padding y borde en el ancho/alto total */
 }
 
 /* Animación RGB para el título */
@@ -17,6 +19,8 @@ body {
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     animation: rgb-breathing 4s infinite alternate;
     margin-bottom: 20px;
+    text-align: center; /* Centrar texto en pantallas pequeñas */
+    padding: 0 10px; /* Padding para evitar que el texto se pegue a los bordes */
 }
 
 @keyframes rgb-breathing {
@@ -30,7 +34,7 @@ body {
 .road-container {
     width: 90%;
     max-width: 1000px;
-    height: 650px; /* Aumentamos la altura para los buses más grandes */
+    height: 650px;
     border: 5px solid #555;
     background-color: #666;
     position: relative;
@@ -48,15 +52,15 @@ body {
 /* Estilos para las imágenes de los autobuses */
 .bus-image {
     position: absolute;
-    width: 100px; /* ¡Aumentamos el ancho! */
-    height: auto; /* Altura automática para mantener proporción */
+    width: 100px;
+    height: auto;
     left: 0;
-    transform: translateY(-50%); /* Centra verticalmente la imagen en su "carril" */
+    transform: translateY(-50%);
     transition: left linear;
-    image-rendering: optimizeSpeed; /* Para que la imagen se vea bien al moverse */
+    image-rendering: optimizeSpeed;
 }
 
-/* Posiciones verticales para cada autobús (ajustadas para el nuevo tamaño) */
+/* Posiciones verticales para cada autobús */
 #bus1 { top: 7%; } 
 #bus2 { top: 18%; }
 #bus3 { top: 29%; }
@@ -67,7 +71,6 @@ body {
 #bus8 { top: 84%; }
 #bus9 { top: 95%; }
 
-
 button {
     padding: 15px 30px;
     font-size: 1.2em;
@@ -77,6 +80,7 @@ button {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-bottom: 20px; /* Espacio debajo del botón */
 }
 
 button:hover:not(:disabled) {
@@ -89,9 +93,84 @@ button:disabled {
 }
 
 .message {
-    margin-top: 20px;
+    margin-top: 0; /* Ajustado para que no haya margen extra */
     font-size: 1.5em;
     font-weight: bold;
     color: #007BFF;
     text-align: center;
+    padding: 0 10px; /* Padding para evitar que el texto se pegue a los bordes */
+}
+
+/* --- Media Queries para la Responsividad --- */
+
+/* Para pantallas más pequeñas (ej. celulares en vertical) */
+@media (max-width: 768px) {
+    #raceTitle {
+        font-size: 1.8em; /* Título más pequeño */
+    }
+
+    .road-container {
+        width: 95%; /* Ocupa más ancho en pantallas pequeñas */
+        height: 450px; /* Altura reducida para caber mejor */
+        border-width: 3px; /* Borde más fino */
+    }
+
+    .bus-image {
+        width: 70px; /* Autobuses más pequeños en celulares */
+    }
+
+    /* Reajuste de posiciones verticales para los buses más pequeños */
+    #bus1 { top: 7%; } 
+    #bus2 { top: 17%; }
+    #bus3 { top: 27%; }
+    #bus4 { top: 37%; }
+    #bus5 { top: 47%; }
+    #bus6 { top: 57%; }
+    #bus7 { top: 67%; }
+    #bus8 { top: 77%; }
+    #bus9 { top: 87%; }
+
+    button {
+        padding: 12px 25px; /* Botón un poco más pequeño */
+        font-size: 1em;
+    }
+
+    .message {
+        font-size: 1.2em; /* Mensaje más pequeño */
+    }
+}
+
+/* Para pantallas muy pequeñas (ej. celulares más antiguos o modos compactos) */
+@media (max-width: 480px) {
+    #raceTitle {
+        font-size: 1.5em;
+    }
+
+    .road-container {
+        height: 400px; /* Altura aún más reducida */
+    }
+
+    .bus-image {
+        width: 60px; /* Autobuses aún más pequeños */
+    }
+    
+    /* Reajuste de posiciones verticales para los buses más pequeños */
+    #bus1 { top: 8%; } 
+    #bus2 { top: 18%; }
+    #bus3 { top: 28%; }
+    #bus4 { top: 38%; }
+    #bus5 { top: 48%; }
+    #bus6 { top: 58%; }
+    #bus7 { top: 68%; }
+    #bus8 { top: 78%; }
+    #bus9 { top: 88%; }
+
+    button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .message {
+        font-size: 1em;
+    }
 }

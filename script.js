@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const buses = [bus1, bus2, bus3, bus4, bus5, bus6, bus7, bus8, bus9];
 
-    // URLs de las imágenes de los autobuses
     const imageUrls = [
         'https://i.imgur.com/MRUJw5f.png',
         'https://i.imgur.com/KQGQa5R.png'
@@ -23,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const raceDuration = 12000; // 12 segundos en milisegundos
 
-    // --- Nueva función para asignar imágenes una sola vez ---
     function assignBusImages() {
         buses.forEach(bus => {
             const randomIndex = Math.floor(Math.random() * imageUrls.length);
@@ -42,18 +40,26 @@ document.addEventListener('DOMContentLoaded', () => {
     function startRace() {
         startButton.disabled = true;
         winnerMessage.textContent = '';
-        resetBuses(); // Solo reinicia la posición, las imágenes ya están asignadas
+        resetBuses();
 
         if (startSound) {
             startSound.currentTime = 0;
-            startSound.play().catch(e => console.error("Error al reproducir el sonido:", e));
+            startSound.play().catch(e => {
+                console.error("Error al reproducir el sonido:", e);
+                // alert("El audio no pudo reproducirse automáticamente. Por favor, asegúrate de que el sonido esté activado en tu dispositivo.");
+            });
         }
 
         buses.forEach((bus) => {
             const randomDuration = (Math.random() * (14 - 10) + 10).toFixed(2);
             bus.style.transitionDuration = `${randomDuration}s`;
-            // Asegúrate de que este valor coincida con el ancho de tus imágenes + un margen
-            bus.style.left = 'calc(100% - 110px)'; // Ancho de la imagen (100px) + un margen de 10px
+            
+            // --- ¡IMPORTANTE CAMBIO AQUÍ! ---
+            // Obtener el ancho actual del autobús para un movimiento responsive
+            // Usamos offsetWidth o clientWidth para obtener el ancho renderizado.
+            const busWidth = bus.offsetWidth; 
+            // Calcula la posición final restando el ancho del bus más un pequeño margen (ej. 20px)
+            bus.style.left = `calc(100% - ${busWidth + 20}px)`; 
         });
 
         setTimeout(determineWinner, raceDuration + 1000);
@@ -81,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     startButton.addEventListener('click', startRace);
 
-    // --- Llama a la nueva función una sola vez al cargar la página ---
     assignBusImages();
-    resetBuses(); // Resetea las posiciones iniciales
+    resetBuses();
 });
