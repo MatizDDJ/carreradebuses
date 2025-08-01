@@ -90,3 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
     assignBusImages();
     resetBuses();
 });
+const toggleChatButton = document.getElementById('toggleChatButton');
+const chatContainer = document.getElementById('chatContainer');
+
+toggleChatButton.addEventListener('click', () => {
+    chatContainer.classList.toggle('visible');
+    chatContainer.classList.toggle('hidden');
+});

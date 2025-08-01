@@ -189,3 +189,63 @@ button:disabled {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Una sombra suave */
     overflow: hidden; /* Asegura que no se muestren partes del iframe fuera del borde redondeado */
 }
+/* --- Estilos para el Chat Flotante --- */
+.chat-toggle-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000; /* Asegura que esté sobre otros elementos */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.chat-toggle-button:hover {
+    transform: scale(1.1);
+}
+
+.chat-container {
+    position: fixed;
+    bottom: 90px;
+    left: 20px;
+    z-index: 999;
+    width: 350px;
+    height: 500px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    transform: translateY(100%) scale(0.95);
+    opacity: 0;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    transform-origin: bottom left;
+}
+
+.chat-container.visible {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+/* Esconder el chat por defecto */
+.chat-container.hidden {
+    display: block; /* Mantenemos el display para la transición */
+    transform: translateY(100%) scale(0.95);
+    opacity: 0;
+}
+
+#chatbot-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
