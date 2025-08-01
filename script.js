@@ -97,3 +97,32 @@ toggleChatButton.addEventListener('click', () => {
     chatContainer.classList.toggle('visible');
     chatContainer.classList.toggle('hidden');
 });
+function openTab(event, tabName) {
+    // Declara variables
+    let i, tabcontent, tabbuttons;
+
+    // Obtiene todos los elementos con la clase "tab-content" y los oculta
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Obtiene todos los elementos con la clase "tab-button" y elimina la clase "active"
+    tabbuttons = document.getElementsByClassName("tab-button");
+    for (i = 0; i < tabbuttons.length; i++) {
+        tabbuttons[i].className = tabbuttons[i].className.replace(" active", "");
+    }
+
+    // Muestra la pestaña actual y añade la clase "active" al botón que la abrió
+    document.getElementById(tabName).style.display = "block";
+    event.currentTarget.className += " active";
+}
+
+// Llama a la función para abrir la primera pestaña por defecto al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    // ... (Tu código de la carrera de autobuses) ...
+    
+    // Activa la primera pestaña al cargar la página
+    document.getElementById('juegos').style.display = 'block';
+    document.querySelector('.tab-button').classList.add('active');
+});
