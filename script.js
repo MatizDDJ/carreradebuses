@@ -1,3 +1,14 @@
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && event.key === 'I') || (event.ctrlKey && event.shiftKey && event.key === 'C')) {
+        alert("no me mires el codigo fuente <:c");
+        event.preventDefault();
+    }
+});
+
+document.addEventListener('contextmenu', function(event) {
+    alert("no me mires el codigo fuente <:c");
+    event.preventDefault();
+});
 document.addEventListener('DOMContentLoaded', () => {
     const bus1 = document.getElementById('bus1');
     const bus2 = document.getElementById('bus2');
