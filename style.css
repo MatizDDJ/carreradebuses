@@ -174,3 +174,18 @@ button:disabled {
         font-size: 1em;
     }
 }
+#chatbase-chatbot {
+    /* Define el ancho máximo para que no ocupe toda la pantalla en monitores grandes */
+    max-width: 800px;
+    width: 100%;
+    
+    /* Centra el iframe en la página */
+    margin: 40px auto;
+    display: block;
+
+    /* Estilos visuales para que se vea más integrado */
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Una sombra suave */
+    overflow: hidden; /* Asegura que no se muestren partes del iframe fuera del borde redondeado */
+}
